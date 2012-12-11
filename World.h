@@ -3,11 +3,11 @@
 
 class World{
       public:
-             World();
-             run();
+             World(); //constructor w/ no parameters
+             run(); //mallon feugei
              
       private:     
-             void gettingStarted();
+             void gettingStarted(); //showtime
              
 };
 
