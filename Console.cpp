@@ -9,37 +9,37 @@
 using std:: cout;
 using std:: cin;
 
-enum MenuOption {VEHICLE=1, SEEWORLD, SEEINFO, EXIT};
-enum createMenuOption {SMALL_APPARATUS=1, BIG_APPARATUS, HELICOPTER, PLANE};
+enum MenuOption {VEHICLE=1, SEEWORLD, SEEINFO, EXIT}; //user choices for what he will do 
+enum createMenuOption {SMALL_APPARATUS=1, BIG_APPARATUS, HELICOPTER, PLANE}; //user choices for what he will create
 
 Console::Console():choice(0),createChoice(0){} //constructor, intialize variables
 
 Point World::gettingStarted(){}		//create the map
 
-void Console::run(){
+void Console::run(){ //99,9% feugei, actionChoice monh ths
 	actionChoice();
 	//pithanotata na xreiastei kai allo mhnuma ston xrhsth, px "Goodbye"
 }
 
 void Console::actionChoice(){
 
-	Vehicle *currentVehiclePtr;	//?
+	Vehicle *currentVehiclePtr;	//Vehicle pointer for a possible vehicle creation
 	bool userExited = false;	//check for exit
 
 	while( !userExited ){
 
-		int mainMenuSelection = displayMainMenu();
+		int mainMenuSelection = displayMainMenu(); //user's choice on main menu
 
 		switch( mainMenuSelection ){
 		case VEHICLE:
-			int vehicleMenuSelection = displayVehicleMenu();
-			currentVehiclePtr = createVehicle( vehicleMenuSelection );
-			currentVehiclePtr->excecute();
-			delete currentVehiclePtr;
+			int vehicleMenuSelection = displayVehicleMenu(); //user's choice on vehicle creation menu
+			currentVehiclePtr = createVehicle( vehicleMenuSelection ); //creates vehicle based on user's choice
+			currentVehiclePtr->excecute(); //h excecute 8a allaksei mallon, 8a sou pw sta sigoura thn Pempth
+			delete currentVehiclePtr; //opws eipa, me tous destructors exw 8ema... (alla autos kata 99,9% 8a fugei, 8a ta poume thn Pempth)
 			break;
-		case SEEWORLD:
+		case SEEWORLD: //mesw auths 8a fainetai o pinakas World???
 		//{code}
-		case SEEINFO:
+		case SEEINFO: //info about a particular object or spot
 		//{code}
 		case EXIT:			//switch 4, exit the system
 			cout<<"\nExiting the system...";
@@ -61,8 +61,8 @@ int Console::displayMainMenu() const{
 	cout<<"4 - Exit";
 
 	cout<<"\nEnter a choice: ";
-	cin>>choice;
-	return choice;
+	cin>>choice; 
+	return choice; //returns user's choice on what he would like to do according to options 1-4
 }
 
 int Console::displayVehicleMenu() const{
@@ -75,13 +75,13 @@ int Console::displayVehicleMenu() const{
 
 	cout<<"\nEnter a choice: ";
 	cin>>createChoice;
-	return createChoice;
+	return createChoice; //returns user's choice on what he would like to create according to options 1-4
 }
 
 Vehicle *Console::createVehicle( int type ){
-	Vehicle *tempPtr;
+	Vehicle *tempPtr; //Vehicle pointer for vehicle creation according to user's choice
 
-	switch( type ){
+	switch( type ){ 
 	case SMALL_APPARATUS:
 		tempPtr = new smallApparatus(fuel, fuelCons, water, waterCons, age, condition, speed); //oi parametroi den einai apolutoi
 		break;
@@ -96,5 +96,5 @@ Vehicle *Console::createVehicle( int type ){
 		break;
 	}
 
-	return tempPtr;
+	return tempPtr; 
 }
